@@ -42,6 +42,46 @@ By running
 
 you will get a basic Kubernetes cluster with a single control node and 3 workload nodes.
 
+**Notes regarding the installation**
+* The Kubernetes configuration file will be copied to $HOME/.kube/config_raspi. Point or add this file to the environment variable KUBECONFIG in order to access your Kubernetes cluster.
+In order to use the cluster you need to set your context appropriately.
+
+    `kubectl config use-context my-cluster-name`
+
+* The IP addresses are hardcoded in the inventory file. You might want to remove the IP addresses. I let my cluster nodes receive IP addresses via DHCP in my LAN. Afterwards I specified that the nodes should always receive the same address. You might want to consider using static IP addresses for your nodes.
+  
+
+## Accessing the Dashboard
+
+Open a terminal on the machine from which you want to access your dashboard and run
+
+`kubectl proxy`
+
+Afterwards you can access your dashboard via browser on the URL
+
+`http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login`
+
+In order to login select the option 'Token', run the command
+
+`kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')`
+
+The output looks like that:
+>
+>Name:         admin-user-token-zqdvp
+>Namespace:    kubernetes-dashboard
+>Labels:       <none>
+>Annotations:  kubernetes.io/service-account.name: admin-user
+>              kubernetes.io/service-account.uid: db9503d8-a847-490a-b40e-48661c6b8639
+>
+>Type:  kubernetes.io/service-account-token
+>
+>Data
+>====
+>namespace:  20 bytes
+>token:      >eyJhbGciOiJSUzI1NiIsImtpZCI6ImtLQ2NlTzhkX3ZRbFp3UnBwZXA2ZjdvbllrYndnalJZakk2ZmVDTkRmS1EifQ.>eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2U>iOiJrdWJlcm5ldGVzLWRhc2hib2AyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi>11c2VyLXRva2VuLXpxZHZwIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkb>WluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJkYjk1MDNkOC1hODQ3>LTQ5MGEtYjQwZS00ODY2MWM2Yjg2MzkiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZXJuZXRlcy1kYXNoYm9hcmQ>9YWRtaW4tdXNlciJ9.>Modf_XjT4HgYfBzdVSXKf6hUAhfRCpH2P_v4eF4JliKaVPeLeqh4PVLpMAJ-T5zcmN1ehbbFEG5aEpiBuTWN_H_QHHVcKFMLZVL>dYdRrnhy_Rcq2fMumjEMJA6Zl_O5QT168pnJx6JoRZk0aaFLXB8xVtz_xvJ1dNE0A3lxRae1uW8QGYst_roMUtBkbpWCEVKxTCj>NYO2C1BdCZJ8E8a5AreDHII6X16broRqeQAryoW6FrzenbTcelbWiTZQdUuRf6LDwZNrNClhpjB23rZ9V4qzd5aX3kzsTBRZoKl>FTXTIh4PuVO9xoizFIE6-Ydu2SXXizt-1Q9Tye4C_HWBg
+>ca.crt:     1025 bytes
+
+Copy the token into the token entry field. 
 
 ## Looking forward
 
