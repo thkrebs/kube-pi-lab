@@ -18,3 +18,7 @@
   become: yes
   roles: 
   - node-join
+
+- hosts: control
+  roles:
+  - dashboard

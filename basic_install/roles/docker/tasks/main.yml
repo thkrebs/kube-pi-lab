@@ -1,0 +1,42 @@
+---
+# tasks file for docker
+# 
+# tasks file for kube
+- name: add Docker repo apt signing key 
+  apt_key:
+    url: https://download.docker.com/linux/raspbian/gpg
+    state: present
+
+- name: add Docker repository
+  apt_repository: 
+    repo: deb [arch=armhf] https://download.docker.com/linux/raspbian buster stable
+    filename: docker
+    state: present
+
+- name: install Docker pre-requisites
+  apt: 
+    update-cache: yes 
+    pkg: '{{ docker_prereq }}'
+
+- name: install Docker
+  apt: 
+    update-cache: yes 
+    install_recommends: no
+    pkg: '{{ docker_pkgs }}'
+
+- name: Adding user to docker group
+  command: "usermod {{ user }} -aG docker"
+  become: yes
+  become_user: root
+
+- name: mark Docker packages as hold
+  dpkg_selections:
+    name: '{{ item }}'
+    selection: hold
+  with_items: '{{ docker_pkgs  }}'
+
+- name: enable and start docker as service
+  systemd:
+    name: docker
+    state: started
+    enabled: yes

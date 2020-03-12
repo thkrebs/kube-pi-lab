@@ -1,3 +1,7 @@
+# Users
+root_user: root
+std_user: pi
+
 domain: int.jduncan.io
 master_ip: "{{ hostvars[groups['control'][0]]['ansible_default_ipv4'].address }}"
 # Kubernetes
@@ -12,11 +16,13 @@ kubeadm_opts: ""
 # For example:
 # kubeadm_opts: '--apiserver-cert-extra-sans "k8s.domain.com,kubernetes.domain.com"'
 
-service_cidr: "172.16.0.0/16"
-pod_network_cidr: "192.168.100.0/24"
+service_cidr: "192.168.178.0/24"
+#pod_network_cidr: "192.168.100.0/24"
+pod_network_cidr: "10.244.0.0/16"
 
 # Network implementation('flannel', 'calico', 'canal')
-network: calico
+# Flannel didn't work properly, calico would have required fiddling with the images to cope with ARM, weave worked out of the box
+network: weave
 calico_version: '3.10'
 
 # Change this to an appropriate interface, preferably a private network.

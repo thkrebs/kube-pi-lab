@@ -1,4 +1,5 @@
 ---
+
 # tasks file for node-join
 - name: Reset Kubernetes component
   shell: "kubeadm reset --force"

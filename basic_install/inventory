@@ -1,0 +1,12 @@
+[lab]
+kube01 ansible_ssh_host=192.168.178.31 ansible_user=pi
+kube02 ansible_ssh_host=192.168.178.46 ansible_user=pi
+kube03 ansible_ssh_host=192.168.178.47 ansible_user=pi
+kube04 ansible_ssh_host=192.168.178.48 ansible_user=pi
+
+
+[control]
+kube01 ansible_user=pi
+
+[nodes]
+kube[02:04] ansible_user=pi

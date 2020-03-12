@@ -1,0 +1,6 @@
+== Info:   Trying 192.168.178.31...
+== Info: TCP_NODELAY set
+== Info: Connection failed
+== Info: connect to 192.168.178.31 port 80 failed: Connection refused
+== Info: Failed to connect to nginx.example.com port 80: Connection refused
+== Info: Closing connection 0

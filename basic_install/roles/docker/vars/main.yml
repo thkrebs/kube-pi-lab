@@ -1,0 +1,12 @@
+---
+# vars file for docker
+
+docker_prereq:
+- apt-transport-https
+- ca-certificates
+
+docker_pkgs:
+- docker-ce-cli
+- docker-ce
+
+user: pi

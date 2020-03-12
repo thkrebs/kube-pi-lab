@@ -1,0 +1,17 @@
+---
+
+# tasks file for dashboard
+- name: Deploy dashboard
+  local_action:
+    module: shell
+    _raw_params: "kubectl apply -f  https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc5/aio/deploy/recommended.yaml"
+  
+- name: Deploy admin user
+  local_action:
+    module: shell
+    _raw_params: "kubectl apply -f {{ role_path }}/files/dashboard_adminuser.yml"
+
+- name: Deploy Cluster Role Binding
+  local_action:
+    module: shell
+    _raw_params: "kubectl apply -f {{ role_path }}/files/dashboard_clusterrolebinding.yml"
