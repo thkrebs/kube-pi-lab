@@ -1,8 +1,8 @@
 # Kubernetes Research Lab for Raspberry Pi clusters
 
-Inspired by several articles, in particular this [GitHub repository](https://github.com/jduncan-rva/kube-pi-lab), I started to build by own Kubernetes cluster using 4 Raspberry PIs 4 model B with 4 GB RAM.
+Inspired by several articles, in particular this [GitHub repository](https://github.com/jduncan-rva/kube-pi-lab), I started to build my own Kubernetes cluster using 4 Raspberry PIs 4 model B with 4 GB RAM.
 
-This project's goal is to ease deployment (and re-deployment) of Kubernetes in a Raspberry Pi cluster. 
+This project's goal is to make deployment (and re-deployment) of Kubernetes in a Raspberry Pi cluster a repeatable automated process. 
 
 ## Tested Configuration & Bill of Material
 
