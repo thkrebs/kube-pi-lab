@@ -7,7 +7,7 @@ This project's goal is to ease deployment (and re-deployment) of Kubernetes in a
 ## Tested Configuration & Bill of Material
 
 Currently my clusters looks like that:
-![Kubernetes Cluster with four Raspberry PIs](http://./images/raspi_cluster.png)
+![Kubernetes Cluster with four Raspberry PIs](http://images/raspi_cluster.png)
 
 **Bill of Material**
 
