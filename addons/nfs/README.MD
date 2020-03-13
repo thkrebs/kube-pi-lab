@@ -19,10 +19,11 @@ Finally, I installed the dynamic provisioning approach where a persistence volum
 
 ## Test 
 
-If everyting went right you can test the setup by applying the YAML files in the directory `nfs-dynamic` . 
+If everyting went right you can test the setup by applying the YAML files
 
-> kubectl apply -f test_claim.yml
-> kubectl apply -f test_pod.yml
+`kubectl apply -f test_claim.yml`
+
+`kubectl apply -f test_pod.yml`
 
 The first YAML file creates a persistent volume claim. The second YAML file spawns up a pod which writes the file SUCCESS into the NFS volume and terminates afterwards.
 
